@@ -5,34 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Create</title>
+    <link rel="stylesheet" href="{{asset('/css/create.css')}}">
 </head>
 <body>
+    <h1>Tambahkan Karyawan</h1>
     <form id="formKaryawan" action="/tabelKaryawan/store" method="POST">
         @csrf
-        <input id="nama" type="text" name="nama" placeholder="Nama">
-        <p id="error-name" class="error-message"></p><br>
+        <div id="container">
+            <div>
+                <div class="fm">
+                    <label for="">Nama</label><br>
+                    <input id="nama" type="text" name="nama" placeholder="Masukkan nama">
+                    <p id="error-name" class="error-message"></p><br>
+                </div>
+                
+                <div class="fm">
+                    <label for="">NIK</label><br>
+                    <input id="nik" type="text" name="identification" placeholder="Masukkan NIK">
+                    <p id="error-nik" class="error-message"></p><br>
+                </div>
 
-        <input type="text" name="identification" placeholder="Nomor ID"><br>
-        <select name="jenisKelamin" id="">
-            <option value="">Pilih Jenis Kelamin</option>
-            <option value="L">Laki-Laki</option>
-            <option value="P">Perempuan</option>
-        </select><br>
+                <div class="fm">
+                    <label for="">Jenis Kelamin</label><br>
+                    <select name="jenisKelamin" id="gender">
+                        <option value="">Pilih Jenis Kelamin</option>
+                        <option value="L">Laki-Laki</option>
+                        <option value="P">Perempuan</option>
+                    </select>
+                    <p id="error-gender" class="error-message"></p><br>
+                </div>
 
-        <textarea id="alamat" name="alamat" rows="10"></textarea>
-        <p id="error-alamat" class="error-message"></p><br>
-
-
-        <input id="number" type="text" name="telp" placeholder="Nomor Telefon">
-        <p id="error-number" class="error-message"></p><br>
-        <br>
-
-
-        <input id="usia" type="text" name="usia" placeholder="Usia">
-        <p id="error-usia" class="error-message"></p>
-        <br>
-
-        <button id="send-btn" type="submit">Save</button>
+                <div class="fm">
+                    <label for="">Alamat</label><br>
+                    <textarea id="alamat" name="alamat" rows="10" placeholder="Masukkan alamat"></textarea>
+                    <p id="error-alamat" class="error-message"></p><br>
+                </div>
+                
+                <div class="fm">
+                    <label for="">Nomor Telefon</label><br>
+                    <input id="number" type="text" name="telp" placeholder="Masukkan nomor telefon">
+                    <p id="error-number" class="error-message"></p><br>
+                    <br>
+                </div>
+                
+                <div class="fm">
+                    <label for="">Usia</label><br>
+                    <input id="usia" type="text" name="usia" placeholder="Masukkan usia">
+                    <p id="error-usia" class="error-message"></p>
+                    <br>
+                </div>
+            </div>
+            <div>
+                <button id="send-btn" type="submit">Simpan</button>
+            </div>
+        </div>
     </form>
 
     <script>
@@ -42,16 +68,16 @@
             let errorName = document.querySelector("#error-name");
         
             if (valueName == "") {
-                errorName.innerHTML = "Name cannot be empty!";
-                inputName.style.border = "1px solid red";
+                errorName.innerHTML = "Nama tidak boleh kosong!";
+                inputName.style.border = "2px solid red";
                 return false;
             } else if(valueName.length < 5 || valueName.length > 20) {
-                errorName.innerHTML = "Name has to be between 5-20 characters!";
-                inputName.style.border = "1px solid red";
+                errorName.innerHTML = "Nama harus antara 5-20 karakter!";
+                inputName.style.border = "2px solid red";
                 return false;
             } else {
                 errorName.innerHTML = "";
-                inputName.style.border = "1px solid black";
+                inputName.style.border = "2px solid #850E35";
                 return true;
             }
         }
@@ -62,20 +88,20 @@
             let errorUsia = document.querySelector("#error-usia");
         
             if (valueUsia === "") {
-            errorUsia.innerHTML = "Age cannot be empty!";
-            inputUsia.style.border = "1px solid red";
+            errorUsia.innerHTML = "Usia tidak boleh kosong!";
+            inputUsia.style.border = "2px solid red";
             return false;
             } else if (isNaN(valueUsia)) {
-            errorUsia.innerHTML = "Age has to be an integer!";
-            inputUsia.style.border = "1px solid red";
+            errorUsia.innerHTML = "Usia harus berupa angka!";
+            inputUsia.style.border = "2px solid red";
             return false;
             } else if(valueUsia < 21){
-            errorUsia.innerHTML = "Age must be greater than 20!";
-            inputUsia.style.border = "1px solid red";
+            errorUsia.innerHTML = "Usia harus lebih besar dari 20!";
+            inputUsia.style.border = "2px solid red";
             return false;
             } else {
             errorUsia.innerHTML = "";
-            inputUsia.style.border = "1px solid black";
+            inputUsia.style.border = "2px solid #850E35";
             return true;
             }
         }
@@ -87,16 +113,16 @@
             console.log(valueAlamat);
         
             if (valueAlamat === "") {
-            errorAlamat.innerHTML = "Address cannot be empty!";
-            inputAlamat.style.border = "1px solid red";
+            errorAlamat.innerHTML = "Alamat tidak boleh kosong!";
+            inputAlamat.style.border = "2px solid red";
             return false;
             } else if(valueAlamat.length < 10 || valueAlamat.length > 40){
-            errorAlamat.innerHTML = "Address has to be between 10-40 characters!";
-            inputAlamat.style.border = "1px solid red";
+            errorAlamat.innerHTML = "Usia harus antara 10-40 karakter!";
+            inputAlamat.style.border = "2px solid red";
             return false;
             } else {
             errorAlamat.innerHTML = "";
-            inputAlamat.style.border = "1px solid black";
+            inputAlamat.style.border = "2px solid #850E35";
             return true;
             }
         }
@@ -107,24 +133,64 @@
             let errorNumber = document.querySelector("#error-number");
         
             if (valueNumber === "") {
-            errorNumber.innerHTML = "Number cannot be empty!";
-            inputNumber.style.border = "1px solid red";
+            errorNumber.innerHTML = "Nomor tidak boleh kosong!";
+            inputNumber.style.border = "2px solid red";
             return false;
             } else if (isNaN(valueNumber)) {
-            errorNumber.innerHTML = "Please enter a valid number!";
-            inputNumber.style.border = "1px solid red";
+            errorNumber.innerHTML = "Nomor harus berupa angka!";
+            inputNumber.style.border = "2px solid red";
             return false;
             } else if(valueNumber.length < 9 || valueNumber.length > 12){
-            errorNumber.innerHTML = "Number has to be between 9-12 characters!";
-            inputNumber.style.border = "1px solid red";
+            errorNumber.innerHTML = "Nomor harus antara 9-12 karakter!";
+            inputNumber.style.border = "2px solid red";
             return false;
             } else if(valueNumber.substring(0,2) != "08"){
-            errorNumber.innerHTML = "Number has to start with 08!";
-            inputNumber.style.border = "1px solid red";
+            errorNumber.innerHTML = "Nomor harus mulai dengan 08!";
+            inputNumber.style.border = "2px solid red";
             return false;
             } else {
             errorNumber.innerHTML = "";
-            inputNumber.style.border = "1px solid black";
+            inputNumber.style.border = "2px solid #850E35";
+            return true;
+            }
+        }
+
+        function validateNik() {
+            let inputNik = document.querySelector("#nik");
+            let valueNik = inputNik.value;
+            let errorNik = document.querySelector("#error-nik");
+        
+            if (valueNik === "") {
+            errorNik.innerHTML = "NIK tidak boleh kosong!";
+            inputNik.style.border = "2px solid red";
+            return false;
+            } else if (isNaN(valueNik)) {
+            errorNik.innerHTML = "NIK harus berupa angka!";
+            inputNik.style.border = "2px solid red";
+            return false;
+            } else if(valueNik.length != 16){
+            errorNik.innerHTML = "NIK harus 16 karakter!";
+            inputNik.style.border = "2px solid red";
+            return false;
+            } else {
+            errorNik.innerHTML = "";
+            inputNik.style.border = "2px solid #850E35";
+            return true;
+            }
+        }
+
+        function validateGender() {
+            let inputGender = document.querySelector("#gender");
+            let valueGender = inputGender.value;
+            let errorGender = document.querySelector("#error-gender");
+        
+            if (valueGender === "") {
+            errorGender.innerHTML = "Jenis Kelamin harus dipilih!";
+            inputGender.style.border = "2px solid red";
+            return false;
+            } else {
+            errorGender.innerHTML = "";
+            inputGender.style.border = "2px solid #850E35";
             return true;
             }
         }
@@ -138,8 +204,10 @@
             let isUsiaValid = validateUsia();
             let isAlamatValid = validateAlamat();
             let isNumberValid = validateNumber();
+            let isNikValid = validateNik();
+            let isGenderValid = validateGender();
 
-            if (isNameValid && isUsiaValid && isAlamatValid && isNumberValid) {
+            if (isNameValid && isUsiaValid && isAlamatValid && isNumberValid && isNikValid && isGenderValid) {
                 console.log("submit", formKaryawan)
                 formKaryawan.submit();
             }
